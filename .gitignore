@@ -1,2 +1,5 @@
 *.env
 *.venv
+*.run
+*.create
+create.py
