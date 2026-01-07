@@ -12,10 +12,15 @@ class User(Base):
     __tablename__ = "user_account"
     id:Mapped[int] = mapped_column(primary_key=True, type_=Integer)
     user_name:Mapped[str] = mapped_column(type_=Text, unique=True)
+    first_name:Mapped[str] = mapped_column(type_=Text)
+    last_name:Mapped[str] = mapped_column(type_=Text)
     email:Mapped[str] = mapped_column(type_=Text)
     password: Mapped[str] = mapped_column(type_=Text)
-    isadmin: Mapped[bool] = mapped_column(type_=Boolean)
+    is_active: Mapped[bool] = mapped_column(type_=Boolean, default=True)
+    isadmin: Mapped[bool] = mapped_column(type_=Boolean, default=False)
+
     shop: Mapped[List["Shop"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    
     
 
 
