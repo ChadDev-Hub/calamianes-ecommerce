@@ -1,9 +1,6 @@
 from app.db.engine import DbEngine
 import asyncio
-from app.models.user import User
-from app.models.shop import Shop
-from app.models.product import Product
-from app.models.product_image import ProductImage 
+from app import models
 
 async def c_engine():
     session = DbEngine()

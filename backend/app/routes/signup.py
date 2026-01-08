@@ -19,9 +19,9 @@ async def signup(data:SignUpForm = Form(), session:AsyncSession = Depends(get_se
     query = select(User).where(User.email == data.email)
     existing_user  = await session.execute(query)
     if existing_user.scalars().all():
-        raise HTTPException(409, "Emain Already Exists")
+        raise HTTPException(409, "Email Already Exists")
     new_user = User(
-        user_name = data.user_name,
+        user_name = data.username,
         first_name = data.firstname,
         last_name = data.lastname,
         email= data.email,

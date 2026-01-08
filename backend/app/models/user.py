@@ -6,7 +6,7 @@ from typing import List, TYPE_CHECKING
 from ..db.base import Base
 
 if TYPE_CHECKING:
-    from .shop import Shop
+    from .business import Business
 # ---------------------------------------USER-----------------------------------------------
 class User(Base):
     __tablename__ = "user_account"
@@ -19,7 +19,7 @@ class User(Base):
     is_active: Mapped[bool] = mapped_column(type_=Boolean, default=True)
     isadmin: Mapped[bool] = mapped_column(type_=Boolean, default=False)
 
-    shop: Mapped[List["Shop"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    shop: Mapped[List["Business"]] = relationship(back_populates="user", cascade="all, delete-orphan")
     
     
 

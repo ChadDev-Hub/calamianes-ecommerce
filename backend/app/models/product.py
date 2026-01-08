@@ -6,7 +6,7 @@ from sqlalchemy import Integer, ForeignKey, Text, VARCHAR
 from geoalchemy2 import Geometry
 
 if TYPE_CHECKING:
-    from .shop import Shop
+    from .business import Business
     from .product_image import ProductImage
 # -------------------------------------Product----------------------------------------------
 class Product(Base):
@@ -23,9 +23,9 @@ class Product(Base):
     '''
     __tablename__ = "product"
     id:Mapped[int] = mapped_column(primary_key=True, type_=Integer)
-    shop_id:Mapped[int] = mapped_column(ForeignKey("shops.id"), type_=Integer)
+    shop_id:Mapped[int] = mapped_column(ForeignKey("business.id"), type_=Integer)
     product_name:Mapped[str] = mapped_column(type_=Text)
     description:Mapped[str] = mapped_column(type_=VARCHAR(200))
     # relationships
-    shop:Mapped["Shop"] = relationship(back_populates="prod")
+    shop:Mapped["Business"] = relationship(back_populates="prod")
     prod_image: Mapped[List['ProductImage']] = relationship(back_populates="prod", cascade="all, delete-orphan")
