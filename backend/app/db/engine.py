@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from .base import Base
 
 load_dotenv()
-USERNAME = os.getenv("POSTGRESUSER")
+USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 DBNAME = os.getenv("DBNAME")
 HOST = os.getenv("HOST")
