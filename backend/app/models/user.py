@@ -17,7 +17,7 @@ class User(Base):
     email:Mapped[str] = mapped_column(type_=Text)
     password: Mapped[str] = mapped_column(type_=Text)
     is_active: Mapped[bool] = mapped_column(type_=Boolean, default=True)
-    isadmin: Mapped[bool] = mapped_column(type_=Boolean, default=False)
+    isadmin: Mapped[bool] = mapped_column(type_=Boolean, default=False) 
 
     shop: Mapped[List["Business"]] = relationship(back_populates="user", cascade="all, delete-orphan")
     

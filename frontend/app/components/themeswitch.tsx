@@ -3,21 +3,18 @@
 import { useEffect, useState } from 'react'
 
 export default function ThemeSwitch() {
-  const [theme, setTheme] = useState<'light' | 'synthwave'>('light')
+  const [theme, setTheme] = useState(()=>{
+    if (typeof window === "undefined") return "light"
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)")
+    return prefersDark? "synthwave" : "light"
+  } )
 
   // Load saved theme from localStorage or default to light
+  
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark')
-    const saved = mediaQuery.matches? "synthwave" : "light"
-    console.log(mediaQuery)
-    console.log(saved)
-    if (saved) {
-      setTheme(saved)
-      document.documentElement.setAttribute('data-theme', saved)
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light')
-    }
-  }, [])
+    document.documentElement.setAttribute("data-theme", theme)
+    localStorage.setItem("theme", theme)
+  }, [theme])
 
   const toggleTheme = () => {
     const next = theme === 'synthwave' ? 'light' : 'synthwave'
